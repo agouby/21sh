@@ -6,8 +6,13 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 23:29:13 by agouby            #+#    #+#             */
-/*   Updated: 2017/11/21 23:39:21 by agouby           ###   ########.fr       */
+/*   Updated: 2017/11/22 02:46:58 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef	21SH_H
+# define 21SH_H
+
+# include "ft_printf.h"
+
+#endif
