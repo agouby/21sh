@@ -6,7 +6,7 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 23:13:52 by agouby            #+#    #+#              #
-#    Updated: 2017/11/21 23:42:34 by agouby           ###   ########.fr        #
+#    Updated: 2017/12/01 03:26:40 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC			= -I./includes
 
 SRC_PATH	= ./srcs/
 
-SRC_FILES	= 21sh.c
+SRC_FILES	= main.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ			= $(SRCS:.c=.o)
 
