@@ -6,9 +6,11 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 23:13:52 by agouby            #+#    #+#              #
-#    Updated: 2017/12/01 03:26:40 by agouby           ###   ########.fr        #
+#    Updated: 2017/12/03 15:43:51 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+CMP_LIB		= n
 
 NAME		= 21sh
 CC			= gcc
@@ -21,25 +23,36 @@ INC			= -I./includes
 
 SRC_PATH	= ./srcs/
 
-SRC_FILES	= main.c
+SRC_FILES	= main.c \
+			  env.c \
+			  configure.c \
+			  restore.c \
+			  lenv.c
+
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ			= $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+ifeq ($(CMP_LIB), y)
 	@/usr/bin/make -C $(LIB_NAME)
-	@$(CC) $(FLA) -o $(NAME) $(OBJ) $(LIB_PATH)
+endif
+	@$(CC) $(FLA) -o $(NAME) $(OBJ) $(LIB_PATH) -l termcap
 
 %.o: %.c
 	@$(CC) $(FLA) $(INC) $(LIB_INC) -c $< -o $@
 
 clean:
+ifeq ($(CMP_LIB), y)
 	@/usr/bin/make clean -C $(LIB_NAME)
+endif
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
+ifeq ($(CMP_LIB), y)
 	@/usr/bin/make fclean -C $(LIB_NAME)
+endif
 	@/bin/rm -f $(NAME)
 
 re: fclean all

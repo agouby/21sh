@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   configure.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 03:26:17 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/03 16:17:33 by agouby           ###   ########.fr       */
+/*   Created: 2017/12/03 12:45:05 by agouby            #+#    #+#             */
+/*   Updated: 2017/12/03 16:16:14 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "21sh.h"
 
-int		main(void)
+int		configure_terminal(t_env *e)
 {
-	t_env	e;
+	char	*term;
 
-	ft_bzero(&e, sizeof(t_env));
-	get_tenv(&e.lenv);
-	configure_terminal(&e);
-	restore_terminal(&e);
-	return (EXIT_SUCCESS);
+	if (!(term = fetch_lenv_value(e->lenv, "TERM")))
+		return (e->err = ERR_TERM_VAR);
+	if (tgetent(NULL, term) == -1)
+		return (e->err = ERR_ENTRY);
+	if (tcgetattr(STDIN, &e->tmios) == -1)
+		return (e->err = ERR_GETATTR);
+	e->tmios.c_lflag &= ~(ICANON);
+	e->tmios.c_lflag &= ~(ECHO);
+	if (tcsetattr(STDIN, TCSANOW, &e->tmios) == -1)
+		return (e->err = ERR_SETATTR);
+	return (0);
 }

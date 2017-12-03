@@ -1,0 +1,6 @@
+LIST OF ERRORS FOR 21SH :
+
+	- [-1 = "TERM VARIABLE MISSING"] {in configure.c}
+	- [-2 = "TGETENT FAILED"] {in configure.c}
+	- [-3 = "TCGETATTR FAILED"] {in configure.c}
+	- [-4 = "TCSETATTR FAILED"] {in configure.c}
