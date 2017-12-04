@@ -6,7 +6,7 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 23:13:52 by agouby            #+#    #+#              #
-#    Updated: 2017/12/03 15:43:51 by agouby           ###   ########.fr        #
+#    Updated: 2017/12/04 06:15:26 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,15 @@ LIB_INC		= -I./libft/includes
 INC			= -I./includes
 
 SRC_PATH	= ./srcs/
-
-SRC_FILES	= main.c \
+SRC_FILES	= configure.c \
 			  env.c \
-			  configure.c \
+			  lenv.c \
+			  main.c \
 			  restore.c \
-			  lenv.c
+			  routine.c \
+			  print.c \
+			  line.c \
+			  delete.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ			= $(SRCS:.c=.o)

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   21sh.h                                             :+:      :+:    :+:   */
+/*   ft_sh.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 23:29:13 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/03 16:17:39 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/04 06:22:56 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_SH_H
+#ifndef FT_SH_H
 # define FT_SH_H
 
 # include "ft_printf.h"
 # include "tenv.h"
 # include "errors.h"
+# include "read.h"
 # include <term.h>
 # include <termios.h>
 
 # define STDIN		0
 # define STDOUT		1
 # define STDERR		2
+
+# define PROMPT		"\e[92magouby\e[91m $ \e[39m"
+# define PROMPT_LEN	24
 
 typedef struct	s_env
 {
@@ -30,7 +34,11 @@ typedef struct	s_env
 	struct termios	tmios;
 }				t_env;
 
-int		configure_terminal(t_env *e);
-int		restore_terminal(t_env *e);
+int				configure_terminal(t_env *e);
+int				restore_terminal(t_env *e);
+int				routine(t_env *e);
+int				putc(int c);
+void			delete_c(t_line *line);
+void			print_prompt(void);
 
 #endif

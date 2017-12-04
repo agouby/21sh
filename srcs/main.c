@@ -6,11 +6,11 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 03:26:17 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/03 16:17:33 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/04 03:46:07 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "ft_sh.h"
 
 int		main(void)
 {
@@ -19,6 +19,7 @@ int		main(void)
 	ft_bzero(&e, sizeof(t_env));
 	get_tenv(&e.lenv);
 	configure_terminal(&e);
+	routine(&e);
 	restore_terminal(&e);
 	return (EXIT_SUCCESS);
 }

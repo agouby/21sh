@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   restore.c                                          :+:      :+:    :+:   */
+/*   read.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 15:43:55 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/03 16:17:37 by agouby           ###   ########.fr       */
+/*   Created: 2017/12/04 03:44:16 by agouby            #+#    #+#             */
+/*   Updated: 2017/12/04 06:13:53 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#ifndef READ_H
+# define READ_H
 
-int		restore_terminal(t_env *e)
+# define IS_EOF(X)		(X == 4)
+# define IS_ENTER(X)	(X == 10)
+# define IS_PRINT(X)	(X > 31 && X < 127)
+# define IS_DEL(X)		(X == 127)
+
+# define INIT_LINE_SIZE	4096
+
+typedef	struct	s_line
 {
-	e->tmios.c_lflag &= (ECHO | ICANON);
-	if (tcsetattr(STDIN, TCSANOW, &e->tmios) == -1)
-		return (e->err = ERR_SETATTR);
-	return (0);
-}
+	char	*buf;
+	size_t	i;
+	size_t	init_size;
+}				t_line;
+
+void	init_line(t_line *line);
+void	putc_line(t_line *line, char c);
+
+#endif

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   configure.c                                        :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 12:45:05 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/04 06:22:52 by agouby           ###   ########.fr       */
+/*   Created: 2017/12/04 04:15:30 by agouby            #+#    #+#             */
+/*   Updated: 2017/12/04 06:15:16 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
 
-int		configure_terminal(t_env *e)
+int		putc(int c)
 {
-	char	*term;
+	return (write(STDOUT, &c, 1));
+}
 
-	if (!(term = fetch_lenv_value(e->lenv, "TERM")))
-		return (e->err = ERR_TERM_VAR);
-	if (tgetent(NULL, term) == -1)
-		return (e->err = ERR_ENTRY);
-	if (tcgetattr(STDIN, &e->tmios) == -1)
-		return (e->err = ERR_GETATTR);
-	e->tmios.c_lflag &= ~(ICANON);
-	e->tmios.c_lflag &= ~(ECHO);
-	if (tcsetattr(STDIN, TCSANOW, &e->tmios) == -1)
-		return (e->err = ERR_SETATTR);
-	return (0);
+void	print_prompt(void)
+{
+	write(STDOUT, PROMPT, PROMPT_LEN);
 }

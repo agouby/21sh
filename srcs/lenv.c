@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 13:44:37 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/03 14:56:17 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/04 06:22:54 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ void	lenv_addb(t_lenv **old, t_lenv *new)
 {
 	t_lenv	*tmp;
 
-	if (!*old)
-	{
-		*old = new;
+	if (!*old && (*old = new))
 		return ;
-	}
 	tmp = *old;
 	while (tmp->next)
 		tmp = tmp->next;
