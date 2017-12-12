@@ -16,7 +16,7 @@ void	init_line(t_line *line)
 {
 	line->init_size = INIT_LINE_SIZE;
 	line->i = 0;
-	if (!(line->buf = ft_memalloc(line->init_size)))
+	if (!(line->buf = (char *)ft_memalloc(line->init_size)))
 		ft_memerr();
 }
 

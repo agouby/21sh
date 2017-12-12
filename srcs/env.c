@@ -16,10 +16,13 @@ int		get_key_and_value(char *line, char **key, char **value)
 {
 	size_t	cut;
 
-	if ((cut = ft_strchr(line, '=') - line) < 1)
+	if ((cut = (ft_strchr(line, '=') - line)) < 1)
 		return (-1);
-	*key = ft_strndup(line, cut);
-	*value = ft_strdup(line + cut + 1);
+	if (!(*key = (char *)malloc(cut + 1)))
+		ft_memerr();
+	ft_strncpy(*key, line, cut);
+	if (!(*value = ft_strdup(line + cut + 1)))
+		ft_memerr();
 	return (0);
 }
 
