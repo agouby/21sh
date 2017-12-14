@@ -1,0 +1,1 @@
+1.	when TERM is not found in configure.c, try to create one

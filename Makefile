@@ -6,7 +6,7 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 23:13:52 by agouby            #+#    #+#              #
-#    Updated: 2017/12/04 06:15:26 by agouby           ###   ########.fr        #
+#    Updated: 2017/12/14 02:08:10 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CMP_LIB		= n
 
 NAME		= 21sh
 CC			= gcc
-FLA			= -Wall -Werror -Wextra
+FLA			= -g -fsanitize=address -Wall -Werror -Wextra
 
 LIB_NAME	= libft
 LIB_PATH	= -L./libft -lftprintf

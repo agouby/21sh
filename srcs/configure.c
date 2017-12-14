@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 12:45:05 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/04 06:22:52 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/14 00:54:16 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int		configure_terminal(t_env *e)
 	e->tmios.c_lflag &= ~(ECHO);
 	if (tcsetattr(STDIN, TCSANOW, &e->tmios) == -1)
 		return (e->err = ERR_SETATTR);
-	return (0);
+	return (NO_ERR);
 }

@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 13:02:11 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/04 03:46:12 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/14 00:54:05 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_key_and_value(char *line, char **key, char **value)
 	ft_strncpy(*key, line, cut);
 	if (!(*value = ft_strdup(line + cut + 1)))
 		ft_memerr();
-	return (0);
+	return (NO_ERR);
 }
 
 char	*fetch_lenv_value(t_lenv *lenv, char *key)
