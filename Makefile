@@ -6,7 +6,7 @@
 #    By: agouby <agouby@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 23:13:52 by agouby            #+#    #+#              #
-#    Updated: 2017/12/14 02:08:10 by agouby           ###   ########.fr        #
+#    Updated: 2017/12/15 07:46:08 by agouby           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ SRC_FILES	= configure.c \
 			  routine.c \
 			  print.c \
 			  line.c \
-			  delete.c
+			  erase.c \
+			  motion.c \
+			  utils.c \
+			  insert.c \
+			  key.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ			= $(SRCS:.c=.o)

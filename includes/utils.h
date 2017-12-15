@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 04:15:30 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/15 03:07:48 by agouby           ###   ########.fr       */
+/*   Created: 2017/12/15 02:31:26 by agouby            #+#    #+#             */
+/*   Updated: 2017/12/15 02:33:37 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sh.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int		putc(int c)
-{
-	return (write(STDOUT, &c, 1));
-}
+int		putc(int c);
 
-void	print_prompt(void)
-{
-	write(STDOUT, PROMPT, PROMPT_LEN);
-}
+#endif

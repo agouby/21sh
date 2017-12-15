@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:25:50 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/14 03:57:49 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/15 07:59:12 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	resize_line(t_line *line)
 
 void		reset_line(t_line *line)
 {
+	line->cp = 0;
 	if (line->size == INIT_LINE_SIZE)
 	{
 		ft_bzero(line->buf, line->i);
@@ -48,7 +49,10 @@ int			init_line(t_line *line)
 	if (INIT_LINE_SIZE <= 0)
 		return (-1);
 	line->i = 0;
+	line->cp = 0;
 	line->size = INIT_LINE_SIZE;
+	line->cm_func[0] = move_right;
+	line->cm_func[1] = move_left;
 	if (!(line->buf = ft_memalloc(INIT_LINE_SIZE)))
 		ft_memerr();
 	return (NO_ERR);
@@ -57,7 +61,6 @@ int			init_line(t_line *line)
 void		putc_line(t_line *line, char c)
 {
 	if (line->i == line->size)
-		resize_line(line);
-	line->buf[line->i++] = c;
-	write(STDOUT, &c, 1);
+			resize_line(line);
+	(line->i != line->cp) ? insert_inside(line, c) : insert_back(line, c);
 }

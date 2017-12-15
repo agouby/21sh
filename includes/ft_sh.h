@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 23:29:13 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/14 02:08:13 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/15 08:03:59 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "tenv.h"
 # include "errors.h"
 # include "read.h"
+# include "utils.h"
 # include <term.h>
 # include <termios.h>
 
@@ -38,7 +39,6 @@ int				configure_terminal(t_env *e);
 int				restore_terminal(t_env *e);
 int				routine(t_env *e);
 int				putc(int c);
-void			delete_c(t_line *line);
 void			print_prompt(void);
 
 #endif

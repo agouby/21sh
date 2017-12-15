@@ -6,7 +6,7 @@
 /*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 03:36:44 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/14 04:04:42 by agouby           ###   ########.fr       */
+/*   Updated: 2017/12/15 07:50:06 by agouby           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,38 @@
 
 int		routine(t_env *e)
 {
-	char	r_buf[3];
 	t_line	line;
+	t_key	key;
+	int		ret;
 
-	(void)e;
 	if (init_line(&line) == -1)
 		return (e->err = ERR_INIT_LINE);
 	while (1)
 	{
 		print_prompt();
-		ft_bzero(r_buf, 3);
-		while (!IS_EOF(*r_buf) && !IS_ENTER(*r_buf))
+		key.n = 0;
+		while (!IS_EOF(key.n) && !IS_ENTER(key.n))
 		{
-			read(STDIN, r_buf, 3);
-			if (IS_PRINT(*r_buf))
-				putc_line(&line, *r_buf);
-			else if (IS_ENTER(*r_buf))
+			ret = read(STDIN, key.buf, 3);
+			key.buf[ret] = '\0';
+			key.n = get_key(key.buf);
+			if (IS_PRINT(key.n))
+				putc_line(&line, *key.buf);
+			else if (IS_ENTER(key.n))
 			{
 				write(STDOUT, "\n", 1);
+				ft_printf("        {%s}\n", line.buf);
 				reset_line(&line);
 			}
-			else if (IS_DEL(*r_buf))
-				delete_c(&line);
-/*			else if (IS_KEY(*r_buf))
+			else if (IS_DEL_F(key.n))
+				erase_c(&line);
+			else if (IS_KEY(key.n))
 			{
-				move_cursor();
+				move_cursor(&line, key.n);
 			}
-*/			ft_printf("KEY PRESSED: {%d}, {%d}, {%d}\n",
-					(int)*r_buf, (int)*(r_buf + 1), (int)*(r_buf + 2));
+//			ft_printf("KEY PRESSED: {%d}\n", key.n);
 		}
-		if (IS_EOF(*r_buf))
+		if (IS_EOF(key.n))
 			break;
 	}
 	return (NO_ERR);
