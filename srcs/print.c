@@ -12,7 +12,7 @@
 
 #include "ft_sh.h"
 
-int		putc(int c)
+int		tputc(int c)
 {
 	return (write(STDOUT, &c, 1));
 }

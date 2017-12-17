@@ -16,7 +16,7 @@ void	move_left(t_line *line)
 {
 	if (!line->cp)
 		return ;
-	tputs(tgetstr("le", NULL), 0, putc);
+	tputs(tgetstr("le", NULL), 0, tputc);
 	line->cp--;
 }
 
@@ -24,7 +24,7 @@ void	move_right(t_line *line)
 {
 	if (line->cp == line->i)
 		return ;
-	tputs(tgetstr("nd", NULL), 0, putc);
+	tputs(tgetstr("nd", NULL), 0, tputc);
 	line->cp++;
 }
 

@@ -38,7 +38,6 @@ typedef struct	s_env
 int				configure_terminal(t_env *e);
 int				restore_terminal(t_env *e);
 int				routine(t_env *e);
-int				putc(int c);
-void			print_prompt(void);
+void				print_prompt(void);
 
 #endif
