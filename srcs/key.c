@@ -1,24 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agouby <agouby@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 07:28:50 by agouby            #+#    #+#             */
-/*   Updated: 2017/12/15 07:32:28 by agouby           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "ft_sh.h"
 
-int		get_key(char *buf)
+int	get_key_index(int val)
 {
-	int	ret;
-
-	ret = 0;
-	while (*buf)
-	{
-		ret += (int)*buf;
-		buf++;
-	}
-	return (ret);
+	if (IS_PRINT(val))
+		return (0);
+	else if (IS_ENTER(val))
+		return (1);
+	else if (IS_DEL_F(val))
+		return (2);
+	else if (IS_DEL_B(val))
+		return (3);
+	else if (IS_ARROW(val))
+		return (4);
+	return (-1);
 }

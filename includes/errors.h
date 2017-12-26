@@ -13,13 +13,13 @@
 #ifndef ERRORS_H
 # define ERRORS_H
 
-# define ERR_CNT		5
+# define ERR_CN		5
 
-# define NO_ERR			0
+# define NO_ERR		0
 # define ERR_TERM_VAR	-1
-# define ERR_ENTRY		-2
+# define ERR_ENTRY	-2
 # define ERR_GETATTR	-3
 # define ERR_SETATTR	-4
-# define ERR_INIT_LINE	-5
+# define ERR_READ	-5
 
 #endif

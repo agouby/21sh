@@ -6,4 +6,4 @@ LIST OF ERRORS FOR 21SH :
 	- [-2 = "TGETENT FAILED"]						{in configure.c}
 	- [-3 = "TCGETATTR FAILED"]						{in configure.c}
 	- [-4 = "TCSETATTR FAILED"]						{in configure.c}
-	- [-5 = "INIT_LINE_SIZE bad value in read.h"]	{in read.h}
+	- [-5 = "READ FAILED"]						{in routine.c}

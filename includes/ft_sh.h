@@ -16,9 +16,10 @@
 # include "ft_printf.h"
 # include "tenv.h"
 # include "errors.h"
-# include "read.h"
+# include "line.h"
 # include "utils.h"
 # include <term.h>
+# include <signal.h>
 # include <termios.h>
 
 # define STDIN		0
@@ -27,6 +28,7 @@
 
 # define PROMPT		"\e[92magouby\e[91m $ \e[39m"
 # define PROMPT_LEN	24
+# define PROMPT_LEN_UI	10
 
 typedef struct	s_env
 {
@@ -36,8 +38,13 @@ typedef struct	s_env
 }				t_env;
 
 int				configure_terminal(t_env *e);
+void				init_signals(void);
 int				restore_terminal(t_env *e);
 int				routine(t_env *e);
 void				print_prompt(void);
+
+int				err_sgt(int data);
+
+void				init_process_input(void (*process_input[NB_ENTRIES])(int val));
 
 #endif

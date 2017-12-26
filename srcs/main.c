@@ -19,6 +19,7 @@ int		main(void)
 	ft_bzero(&e, sizeof(t_env));
 	get_tenv(&e.lenv);
 	configure_terminal(&e);
+	init_signals();
 	routine(&e);
 	restore_terminal(&e);
 	return (EXIT_SUCCESS);

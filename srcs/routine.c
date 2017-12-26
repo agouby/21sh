@@ -16,37 +16,27 @@ int		routine(t_env *e)
 {
 	t_line	line;
 	t_key	key;
-	int		ret;
+	void	(*process_input[NB_ENTRIES])(int val);
 
-	if (init_line(&line) == -1)
-		return (e->err = ERR_INIT_LINE);
+	init_process_input(process_input);
+	ft_bzero(&key, sizeof(t_key));
+	arrow_sgt(1);
 	while (1)
 	{
+		init_line(&line);
 		print_prompt();
-		key.n = 0;
-		while (!IS_EOF(key.n) && !IS_ENTER(key.n))
+		key.val = 0;
+		while (!IS_EOF(key.val) && !IS_ENTER(key.val))
 		{
-			ret = read(STDIN, key.buf, 3);
-			key.buf[ret] = '\0';
-			key.n = get_key(key.buf);
-			if (IS_PRINT(key.n))
-				putc_line(&line, *key.buf);
-			else if (IS_ENTER(key.n))
-			{
-				write(STDOUT, "\n", 1);
-				ft_printf("        {%s}\n", line.buf);
-				reset_line(&line);
-			}
-			else if (IS_DEL_F(key.n))
-				erase_c(&line);
-			else if (IS_KEY(key.n))
-			{
-				move_cursor(&line, key.n);
-			}
-//			ft_printf("KEY PRESSED: {%d}\n", key.n);
+			if (read_input(&key) == -1)
+				return (-1);
+			key.id = get_key_index(key.val);
+			if (key.id != -1)
+				process_input[key.id](key.val);
+			line_sgt(&line);
 		}
-		if (IS_EOF(key.n))
-			break;
+		if (IS_EOF(key.val))
+			break ;
 	}
 	return (NO_ERR);
 }

@@ -14,7 +14,7 @@ CMP_LIB		= n
 
 NAME		= 21sh
 CC			= gcc
-FLA			= -g -fsanitize=address -Wall -Werror -Wextra
+FLA			= -Wno-unused -Wno-empty-body -Wall -Werror -Wextra
 
 LIB_NAME	= libft
 LIB_PATH	= -L./libft -lftprintf
@@ -29,12 +29,15 @@ SRC_FILES	= configure.c \
 			  restore.c \
 			  routine.c \
 			  print.c \
-			  line.c \
-			  erase.c \
-			  motion.c \
-			  utils.c \
-			  insert.c \
-			  key.c
+			  sgt.c \
+			  read.c \
+			  read_utils.c \
+			  key.c \
+			  key_pressed_np.c \
+			  key_pressed_p.c \
+			  init.c \
+			  signal.c \
+			  window.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ			= $(SRCS:.c=.o)
