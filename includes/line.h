@@ -17,6 +17,7 @@
 # include <sys/ioctl.h>
 
 # define NB_ENTRIES	7
+# define READ_LEN	6
 
 # define IS_EOF(X)	(X == 4)
 # define IS_PRINT(X)	(X > 31 && X < 127)
@@ -30,23 +31,28 @@
 # define IS_RIGHT(X)	(X == 185)
 # define IS_LEFT(X)	(X == 186)
 
+# define INIT_LINE_SIZE	168
+
 typedef	struct	s_line
 {
 	char	*buf;
 	size_t	i;
+	size_t	len;
 	size_t	cp;
 	struct winsize w;
 }		t_line;
 
 typedef struct	s_key
 {
-	char	buf[4];
+	char	buf[READ_LEN];
 	int	val;
 	int	ret;
 	int	id;
 }		t_key;
 
 void		init_line(t_line *line);
+void		reset_line(t_line *line);
+void		resize_line_buf(t_line *line);
 
 int		read_input(t_key *key);
 
@@ -55,6 +61,7 @@ int		get_key_index(int val);
 
 void		enter_pressed(int val);
 void		printable_pressed(int val);
+void		del_f_pressed(int val);
 
 void		arrow_pressed(int val);
 void		left_pressed(void);
@@ -66,5 +73,10 @@ void		*line_sgt(void *line);
 void		*arrow_sgt(int b);
 
 void		resize(int sig);
+
+void		insert_back(t_line *line, int val);
+void		insert_inside(t_line *line, int val);
+
+void		delete_inside();
 
 #endif

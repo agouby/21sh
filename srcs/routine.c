@@ -19,11 +19,12 @@ int		routine(t_env *e)
 	void	(*process_input[NB_ENTRIES])(int val);
 
 	init_process_input(process_input);
+	init_line(&line);
 	ft_bzero(&key, sizeof(t_key));
 	arrow_sgt(1);
 	while (1)
 	{
-		init_line(&line);
+		reset_line(&line);
 		print_prompt();
 		key.val = 0;
 		while (!IS_EOF(key.val) && !IS_ENTER(key.val))

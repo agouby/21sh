@@ -30,6 +30,8 @@
 # define PROMPT_LEN	24
 # define PROMPT_LEN_UI	10
 
+# define CURS_POS	(line->cp - PROMPT_LEN_UI)
+
 typedef struct	s_env
 {
 	int				err;

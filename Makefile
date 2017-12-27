@@ -13,42 +13,46 @@
 CMP_LIB		= n
 
 NAME		= 21sh
-CC			= gcc
-FLA			= -Wno-unused -Wno-empty-body -Wall -Werror -Wextra
+CC		= gcc
+DEBUG		= -g -fsanitize=address
+FLA		= -Wno-unused -Wno-empty-body -Wall -Werror -Wextra
 
 LIB_NAME	= libft
 LIB_PATH	= -L./libft -lftprintf
 LIB_INC		= -I./libft/includes
-INC			= -I./includes
+INC		= -I./includes
 
 SRC_PATH	= ./srcs/
+
 SRC_FILES	= configure.c \
-			  env.c \
-			  lenv.c \
-			  main.c \
-			  restore.c \
-			  routine.c \
-			  print.c \
-			  sgt.c \
-			  read.c \
-			  read_utils.c \
-			  key.c \
-			  key_pressed_np.c \
-			  key_pressed_p.c \
-			  init.c \
-			  signal.c \
-			  window.c
+		  env.c \
+		  lenv.c \
+		  main.c \
+		  restore.c \
+		  routine.c \
+		  print.c \
+		  sgt.c \
+		  read.c \
+		  read_utils.c \
+		  key.c \
+		  key_pressed_np.c \
+		  key_pressed_p.c \
+		  signal.c \
+		  line.c \
+		  window.c \
+		  insert.c \
+		  delete.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
-OBJ			= $(SRCS:.c=.o)
+OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
 ifeq ($(CMP_LIB), y)
 	@/usr/bin/make -C $(LIB_NAME)
 endif
-	@$(CC) $(FLA) -o $(NAME) $(OBJ) $(LIB_PATH) -l termcap
+	@$(CC) $(FLA) -o $(NAME) $(OBJS) $(LIB_PATH) -l termcap
 
 %.o: %.c
 	@$(CC) $(FLA) $(INC) $(LIB_INC) -c $< -o $@
@@ -57,7 +61,7 @@ clean:
 ifeq ($(CMP_LIB), y)
 	@/usr/bin/make clean -C $(LIB_NAME)
 endif
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJS)
 
 fclean: clean
 ifeq ($(CMP_LIB), y)
