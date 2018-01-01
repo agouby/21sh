@@ -11,8 +11,8 @@ static void	delete_char(char *buf, size_t pos, size_t len)
 
 void		delete_inside(t_line *line)
 {
-	delete_char(line->buf, CURS_POS - 1, line->i);
+	delete_char(line->buf, CURS_POS(line->cp) - 1, line->i);
 	tputs(tgetstr("sc", NULL), 0, tputc);
-	write(STDOUT, line->buf + CURS_POS - 1, line->i - CURS_POS);
+	write(STDOUT, line->buf + CURS_POS(line->cp) - 1, line->i - CURS_POS(line->cp));
 	tputs(tgetstr("rc", NULL), 0, tputc);
 }

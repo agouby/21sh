@@ -33,6 +33,8 @@ void		init_process_input(void (*process_input[NB_ENTRIES])(int val))
 	process_input[2] = &del_f_pressed;
 	process_input[3] = &empty;
 	process_input[4] = &arrow_pressed;
-	process_input[5] = &empty;
-	process_input[6] = &empty;
+	process_input[5] = &home_pressed;
+	process_input[6] = &end_pressed;
+	process_input[7] = &wleft_pressed;
+	process_input[8] = &wright_pressed;
 }

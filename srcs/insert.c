@@ -20,9 +20,9 @@ void		insert_back(t_line *line, int val)
 void		insert_inside(t_line *line, int val)
 {
 	write(STDOUT, &val, 1);
-	insert_char(line->buf, (char)val, CURS_POS, line->i);
+	insert_char(line->buf, (char)val, CURS_POS(line->cp), line->i);
 	tputs(tgetstr("sc", NULL), 0, tputc);
-	write(STDOUT, line->buf + CURS_POS + 1, line->i - CURS_POS + 1);
+	write(STDOUT, line->buf + CURS_POS(line->cp) + 1, line->i - CURS_POS(line->cp) + 1);
 	tputs(tgetstr("rc", NULL), 0, tputc);
 	++line->i;
 }

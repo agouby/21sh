@@ -41,7 +41,9 @@ SRC_FILES	= configure.c \
 		  line.c \
 		  window.c \
 		  insert.c \
-		  delete.c
+		  delete.c \
+		  line_utils.c \
+		  histo_list.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJS		= $(SRCS:.c=.o)

@@ -7,7 +7,7 @@ void	printable_pressed(int val)
 	line = line_sgt(NULL);
 	if (line->i + 1 == line->len)
 		resize_line_buf(line);
-	if (line->i == CURS_POS)
+	if (line->i == CURS_POS(line->cp))
 		insert_back(line, val);
 	else
 		insert_inside(line, val);
@@ -21,7 +21,7 @@ void	del_f_pressed(int val)
 	t_line *line;
 
 	line = line_sgt(NULL);
-	if (!CURS_POS)
+	if (!CURS_POS(line->cp))
 		return ;
 	if (!(line->cp % line->w.ws_col - 1))
 	{
@@ -31,7 +31,7 @@ void	del_f_pressed(int val)
 	else
 		tputs(tgetstr("le", NULL), 0, tputc);
 	tputs(tgetstr("cd", NULL), 0, tputc);
-	if (CURS_POS == line->i)
+	if (CURS_POS(line->cp) == line->i)
 		line->buf[line->i - 1] = '\0';
 	else
 		delete_inside(line);
